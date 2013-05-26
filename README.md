@@ -68,6 +68,8 @@ CREATE INDEX ix_tags_user_ids ON tags USING GIST (user_ids  gist__int_ops);
 The Benchmark
 --------------------
 
+All four strategy/indexing variations are tested in the benchmark.
+
 The benchmark is written in C++ using libpqxx. The main code for it
 can be found in `bench.cc` and a benchmark runner is checked in at
 `runall.sh`. There are various assumptions hard-coded into the

@@ -64,7 +64,7 @@ void DoSelects(pqxx::nontransaction *txn,
     } else {
       query << "SELECT * FROM tags WHERE user_ids @> ARRAY[" << user_id << "]";
     }
-    txn->exec(query);
+    txn->exec(query.str());
   }
 }
 
