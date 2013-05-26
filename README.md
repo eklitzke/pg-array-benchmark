@@ -58,17 +58,27 @@ CREATE INDEX ix_tags_user_ids ON tags USING GIN (user_ids);
 Indexing Variation 2
 --------------------
 
-Index a GIST index on the `user_ids` column like:
+Index a GIST index on the `user_ids` column with `gist__int_ops` like:
 
 ```sql
 CREATE EXTENSION intarray;
 CREATE INDEX ix_tags_user_ids ON tags USING GIST (user_ids  gist__int_ops);
 ```
 
+Indexing Variation 3
+--------------------
+
+Index a GIST index on the `user_ids` column with `gist__intbig_ops` like:
+
+```sql
+CREATE EXTENSION intarray;
+CREATE INDEX ix_tags_user_ids ON tags USING GIST (user_ids  gist__intbig_ops);
+```
+
 The Benchmark
 --------------------
 
-All four strategy/indexing variations are tested in the benchmark.
+All six strategy/indexing variations are tested in the benchmark.
 
 The benchmark is written in C++ using libpqxx. The main code for it
 can be found in `bench.cc` and a benchmark runner is checked in at

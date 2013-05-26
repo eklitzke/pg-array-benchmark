@@ -17,6 +17,11 @@ gist: initdb bench
 	psql -c "CREATE EXTENSION intarray" || true
 	psql -c "CREATE INDEX ix_user_ids ON tags USING GIST (user_ids gist__int_ops)"
 
+.PHONY: gistbig
+gist: initdb bench
+	psql -c "CREATE EXTENSION intarray" || true
+	psql -c "CREATE INDEX ix_user_ids ON tags USING GIST (user_ids gist__intbig_ops)"
+
 .PHONY: clean
 clean:
 	rm -f bench
